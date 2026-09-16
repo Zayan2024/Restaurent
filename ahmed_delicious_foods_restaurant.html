@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Delicious Foods Restaurant | Authentic & Gourmet Cuisine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff8f1',
+                            100: '#feecdc',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        amberGold: '#d97706',
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-600 to-amber-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-serif">A</i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-bold font-serif text-white tracking-wide block leading-none">Ahmed <span class="text-brand-500">Delicious</span></span>
+                        <span class="text-xs text-amber-400 font-medium tracking-widest uppercase block mt-1">Foods Restaurant</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-300 text-sm">
+                    <a href="#home" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Home</a>
+                    <a href="#specials" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Chef Specials</a>
+                    <a href="#menu" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Our Menu</a>
+                    <a href="#about" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">About Us</a>
+                    <a href="#reviews" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Reviews</a>
+                    <a href="#contact" class="hover:text-brand-500 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Contact</a>
+                </nav>
+
+                <!-- Actions Button & Cart -->
+                <div class="flex items-center space-x-4">
+                    <button id="cartBtn" class="relative p-2.5 text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-800 rounded-xl transition-all focus:outline-none border border-slate-700/60" aria-label="View Cart">
+                        <i class="fa-solid fa-utensils text-lg text-brand-500"></i>
+                        <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-brand-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-900 hidden">0</span>
+                    </button>
+
+                    <a href="#reservation" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-500 hover:to-amber-500 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/30 hover:shadow-brand-500/50 transition-all hover:-translate-y-0.5">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <span>Book Table</span>
+                    </a>
+
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-300 hover:text-white rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">Home</a>
+            <a href="#specials" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">Chef Specials</a>
+            <a href="#menu" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">Our Menu</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">About Us</a>
+            <a href="#reviews" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">Reviews</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-brand-500">Contact</a>
+            <a href="#reservation" class="mobile-nav-link block w-full text-center bg-brand-600 text-white font-semibold px-4 py-3 rounded-xl mt-4">Book a Table</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center min-h-screen">
+        <!-- Background Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80" alt="Restaurant Interior" class="w-full h-full object-cover object-center filter brightness-40 contrast-110 scale-105 animate-pulse duration-[10000ms]">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-brand-500/30 text-brand-400 text-xs sm:text-sm font-semibold tracking-wide uppercase backdrop-blur-md">
+                        <i class="fa-solid fa-star text-amber-400"></i>
+                        <span>#1 Gourmet Dining Experience</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-serif leading-tight text-white">
+                        Savor the <span class="text-gradient">Authentic Flavors</span> of Fine Culinary Art.
+                    </h1>
+
+                    <p class="text-slate-300 text-lg sm:text-xl max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+                        Welcome to <strong class="text-white font-semibold">Ahmed Delicious Foods</strong>. Experience royal aromatic biryanis, rich charcoal kebabs, sizzlers, and artisan desserts made fresh with organic ingredients and heritage recipes.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-base shadow-xl shadow-brand-600/30 transition-all hover:scale-105 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Explore Our Menu</span>
+                        </a>
+                        <a href="#reservation" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold text-base transition-all hover:scale-105 flex items-center justify-center gap-3 backdrop-blur-md">
+                            <i class="fa-solid fa-calendar-days text-brand-500"></i>
+                            <span>Reserve Table</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div class="flex flex-col lg:flex-row items-center gap-2">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Swift Delivery</h4>
+                                <p class="text-slate-400 text-xs">Hot & fresh in 30 mins</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col lg:flex-row items-center gap-2">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Fresh Organic</h4>
+                                <p class="text-slate-400 text-xs">Handpicked spices & herbs</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col lg:flex-row items-center gap-2">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">100% Halal</h4>
+                                <p class="text-slate-400 text-xs">Certified hygiene</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Dish Card -->
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Decorative glow -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-amber-500 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" alt="Ahmed Special Biryani" class="w-full h-72 object-cover rounded-2xl mb-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="bg-brand-500/20 text-brand-400 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Chef's Signature</span>
+                                    <h3 class="text-2xl font-bold font-serif text-white mt-1">Royal Dum Biryani</h3>
+                                </div>
+                                <span class="text-2xl font-black text-brand-500">$18.99</span>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">Long-grain basmati rice cooked with succulent lamb, saffron, and traditional spices cooked on slow charcoal flame.</p>
+                            <button onclick="addToCart(1)" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors">
+                                <i class="fa-solid fa-bag-shopping"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers / Chef's Recommendation -->
+    <section id="specials" class="py-20 bg-slate-900/60 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Handcrafted Delicacies</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-serif text-white mt-2">Chef’s Special Recommendations</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-500 to-amber-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Special Item 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden card-hover group relative">
+                    <span class="absolute top-4 left-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase shadow-lg">20% OFF TODAY</span>
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80" alt="Chargrilled BBQ Platter" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-amber-400 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.9 (180+ reviews)</span>
+                            <div class="text-right">
+                                <span class="line-through text-slate-500 text-xs mr-2">$29.99</span>
+                                <span class="text-xl font-bold text-brand-500">$23.99</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-white group-hover:text-brand-400 transition-colors">Emperor's BBQ Platter</h3>
+                        <p class="text-slate-400 text-sm mt-2 line-clamp-2">Selection of Seekh Kebab, Chicken Malai Boti, Lamb Chops & Tandoori Naan.</p>
+                        <button onclick="addToCart(2)" class="mt-5 w-full py-2.5 rounded-xl border border-brand-500/50 hover:bg-brand-600 text-brand-400 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add Special to Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Special Item 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden card-hover group relative">
+                    <span class="absolute top-4 left-4 z-10 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase shadow-lg">HOT SELLER</span>
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80" alt="Butter Chicken Karahi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-amber-400 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-star"></i> 5.0 (210+ reviews)</span>
+                            <span class="text-xl font-bold text-brand-500">$16.50</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-white group-hover:text-brand-400 transition-colors">Special Butter Chicken Handi</h3>
+                        <p class="text-slate-400 text-sm mt-2 line-clamp-2">Tender boneless chicken simmered in creamy tomato-butter curry with fresh garlic.</p>
+                        <button onclick="addToCart(3)" class="mt-5 w-full py-2.5 rounded-xl border border-brand-500/50 hover:bg-brand-600 text-brand-400 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add Special to Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Special Item 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden card-hover group relative">
+                    <span class="absolute top-4 left-4 z-10 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase shadow-lg">CHEF'S FAVORITE</span>
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="Saffron Pistachio Kheer" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-amber-400 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.8 (95+ reviews)</span>
+                            <span class="text-xl font-bold text-brand-500">$8.99</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-white group-hover:text-brand-400 transition-colors">Royal Shahi Tukda & Kheer</h3>
+                        <p class="text-slate-400 text-sm mt-2 line-clamp-2">Traditional rice pudding infused with pure saffron strands, cardamom, pistachios & gold leaf.</p>
+                        <button onclick="addToCart(4)" class="mt-5 w-full py-2.5 rounded-xl border border-brand-500/50 hover:bg-brand-600 text-brand-400 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add Special to Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Section -->
+    <section id="menu" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Taste The Distinction</span>
+            <h2 class="text-3xl sm:text-5xl font-bold font-serif text-white mt-2">Explore Our Full Menu</h2>
+            <p class="text-slate-400 text-base mt-3">From crunchy appetizers to rich main courses and refreshers, curated with fine artisan recipes.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-10 hide-scrollbar" id="menuTabs">
+            <button onclick="filterMenu('all')" class="tab-btn active px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-brand-600 text-white shadow-lg shadow-brand-600/30">All Items</button>
+            <button onclick="filterMenu('appetizers')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">Appetizers</button>
+            <button onclick="filterMenu('mains')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">Main Course</button>
+            <button onclick="filterMenu('bbq')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">BBQ & Kebabs</button>
+            <button onclick="filterMenu('desserts')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">Desserts</button>
+            <button onclick="filterMenu('beverages')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">Beverages</button>
+        </div>
+
+        <!-- Menu Cards Grid -->
+        <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Menu items dynamically rendered via JS -->
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-slate-900/80 border-y border-slate-800/80 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=600&q=80" alt="Master Chef Preparing Food" class="rounded-2xl shadow-xl w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Restaurant Interior Dining" class="rounded-2xl shadow-xl w-full h-64 object-cover mt-8">
+                    </div>
+                    <!-- Experience badge -->
+                    <div class="absolute -bottom-6 right-6 bg-gradient-to-r from-brand-600 to-amber-600 text-white p-6 rounded-2xl shadow-2xl hidden sm:block">
+                        <span class="text-4xl font-extrabold block">15+</span>
+                        <span class="text-xs uppercase font-semibold tracking-wider">Years of Culinary Excellence</span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Our Heritage Story</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold font-serif text-white leading-tight">Crafting Unforgettable Flavors Since 2011</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Founded by Executive Chef Ahmed, our restaurant was built on a simple promise: serving royalty-worthy meals made with uncompromised hygiene, authentic heritage spices, and warm hospitality.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Every curry, kebab, and biryani on our menu is prepared from scratch daily. We source prime cuts of halal meat, organic vegetables, and freshly ground spices to ensure every bite is rich, flavorful, and soul-satisfying.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 pt-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-pump-soap text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">100% Hygiene First</h4>
+                                <p class="text-slate-400 text-xs mt-1">Strict kitchen safety protocols and fresh prep.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-award text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Master Chefs</h4>
+                                <p class="text-slate-400 text-xs mt-1">Award-winning recipes crafted to perfection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center mb-10">
+                <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Book Your Table</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-serif text-white mt-2">Reserve a Fine Dining Spot</h2>
+                <p class="text-slate-400 text-sm mt-2">Avoid long queues by booking your preferred table online for family gatherings, dates, or business dinners.</p>
+            </div>
+
+            <form id="reservationForm" class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-500"></i>
+                        <input type="text" id="resName" required placeholder="John Doe" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-phone absolute left-4 top-3.5 text-slate-500"></i>
+                        <input type="tel" id="resPhone" required placeholder="+1 (555) 000-0000" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Number of Guests</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-users absolute left-4 top-3.5 text-slate-500"></i>
+                        <select id="resGuests" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors text-sm appearance-none">
+                            <option value="2">2 Persons</option>
+                            <option value="4">4 Persons</option>
+                            <option value="6">6 Persons</option>
+                            <option value="8+">8+ Large Group</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Reservation Date</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-calendar-days absolute left-4 top-3.5 text-slate-500"></i>
+                        <input type="date" id="resDate" required class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Preferred Time</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-clock absolute left-4 top-3.5 text-slate-500"></i>
+                        <input type="time" id="resTime" required class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Seating Preference</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-chair absolute left-4 top-3.5 text-slate-500"></i>
+                        <select id="resArea" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors text-sm appearance-none">
+                            <option value="Indoor Main Hall">Indoor Main Hall</option>
+                            <option value="Rooftop Terrace">Rooftop Terrace</option>
+                            <option value="Private VIP Room">Private VIP Room</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2 lg:col-span-3">
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Special Requests (Optional)</label>
+                    <textarea id="resNotes" rows="2" placeholder="Birthday setup, dietary needs, high chair..." class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl p-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors text-sm"></textarea>
+                </div>
+
+                <div class="sm:col-span-2 lg:col-span-3 text-center mt-2">
+                    <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-500 hover:to-amber-500 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition-all hover:scale-105">
+                        Confirm Table Reservation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reviews / Testimonials -->
+    <section id="reviews" class="py-20 bg-slate-900/60 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Happy Foodies</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-serif text-white mt-2">What Our Guests Say</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-500 to-amber-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative shadow-lg">
+                    <div class="flex items-center gap-1 text-amber-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic mb-6">
+                        "The Royal Dum Biryani at Ahmed Delicious Foods is by far the best I've tasted in town! The meat melts in your mouth and the aroma is incredible."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sarah M." class="w-12 h-12 rounded-full object-cover border-2 border-brand-500">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Sarah Jenkins</h4>
+                            <span class="text-slate-500 text-xs">Food Critic & Local Guide</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative shadow-lg">
+                    <div class="flex items-center gap-1 text-amber-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic mb-6">
+                        "Ordered through their online cart for a family dinner. Delivery was fast, hot, and the BBQ Platter packaging preserved all the smoky flavors perfectly!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Michael K." class="w-12 h-12 rounded-full object-cover border-2 border-brand-500">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Michael Tariq</h4>
+                            <span class="text-slate-500 text-xs">Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl relative shadow-lg">
+                    <div class="flex items-center gap-1 text-amber-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic mb-6">
+                        "Celebrated our anniversary here. Outstanding hospitality, warm ambient lighting, and the Shahi Kheer was the perfect sweet ending."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Amina R." class="w-12 h-12 rounded-full object-cover border-2 border-brand-500">
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">Amina Rehman</h4>
+                            <span class="text-slate-500 text-xs">Verified Diner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Contact Info & Opening Hours -->
+            <div class="lg:col-span-5 space-y-8">
+                <div>
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-widest">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-1">Visit or Contact Us</h2>
+                    <p class="text-slate-400 text-sm mt-3">Have questions, catering requests, or feedback? We’d love to hear from you!</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold text-base">Location Address</h4>
+                            <p class="text-slate-400 text-sm mt-1">124 Culinary Boulevard, Gourmet Food District, City 54000</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold text-base">Opening Hours</h4>
+                            <p class="text-slate-400 text-sm mt-1">Mon - Thu: 12:00 PM – 11:30 PM</p>
+                            <p class="text-slate-400 text-sm">Fri - Sun: 12:00 PM – 01:00 AM</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold text-base">Direct Phone & WhatsApp</h4>
+                            <p class="text-slate-400 text-sm mt-1">+1 (800) 555-AHMED (24633)</p>
+                            <p class="text-slate-400 text-sm">info@ahmeddeliciousfoods.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Contact Form & Map -->
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl flex flex-col justify-between">
+                <form id="contactForm" class="space-y-4">
+                    <h3 class="text-xl font-bold font-serif text-white mb-2">Send Us a Direct Message</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="contactName" required placeholder="Your Name" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                        <input type="email" id="contactEmail" required placeholder="Your Email" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                    </div>
+                    <input type="text" id="contactSubject" required placeholder="Subject (e.g. Catering Enquiry)" class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                    <textarea id="contactMessage" rows="3" required placeholder="Write your message here..." class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl p-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm"></textarea>
+                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors text-sm">
+                        Send Message
+                    </button>
+                </form>
+
+                <!-- Map Placeholder Frame -->
+                <div class="mt-8 rounded-2xl overflow-hidden border border-slate-800 relative h-40 bg-slate-800/50 flex items-center justify-center">
+                    <div class="text-center p-4">
+                        <i class="fa-solid fa-map-location-dot text-3xl text-brand-500 mb-2"></i>
+                        <p class="text-xs text-slate-300 font-medium">124 Culinary Boulevard, Gourmet Food District</p>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-widest mt-1 block">[ Interactive GPS Map Location ]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-1">
+                    <a href="#home" class="flex items-center gap-2 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold font-serif text-lg">A</div>
+                        <span class="text-xl font-bold font-serif text-white">Ahmed <span class="text-brand-500">Delicious</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Authentic gourmet food crafted with fresh ingredients, heritage spices, and passionate hospitality.
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-brand-500 flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-brand-500 flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-brand-500 flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-brand-500 transition-colors">Home</a></li>
+                        <li><a href="#specials" class="hover:text-brand-500 transition-colors">Chef Specials</a></li>
+                        <li><a href="#menu" class="hover:text-brand-500 transition-colors">Food Menu</a></li>
+                        <li><a href="#reservation" class="hover:text-brand-500 transition-colors">Table Reservation</a></li>
+                        <li><a href="#contact" class="hover:text-brand-500 transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Categories</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#menu" onclick="filterMenu('appetizers')" class="hover:text-brand-500 transition-colors">Appetizers & Starters</a></li>
+                        <li><a href="#menu" onclick="filterMenu('mains')" class="hover:text-brand-500 transition-colors">Royal Biryanis & Curries</a></li>
+                        <li><a href="#menu" onclick="filterMenu('bbq')" class="hover:text-brand-500 transition-colors">Charcoal Barbecue</a></li>
+                        <li><a href="#menu" onclick="filterMenu('desserts')" class="hover:text-brand-500 transition-colors">Artisan Desserts</a></li>
+                        <li><a href="#menu" onclick="filterMenu('beverages')" class="hover:text-brand-500 transition-colors">Fresh Drinks & Lassi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Newsletter</h4>
+                    <p class="text-xs text-slate-400 mb-3">Subscribe for exclusive discount vouchers & weekend offers.</p>
+                    <form id="newsletterForm" class="flex flex-col gap-2">
+                        <input type="email" id="newsletterEmail" required placeholder="Enter your email" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-brand-500">
+                        <button type="submit" class="w-full py-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl text-xs transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Ahmed Delicious Foods Restaurant. All rights reserved. Crafted for food lovers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sliding Cart Drawer Modal -->
+    <div id="cartModal" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="toggleCart(false)"></div>
+
+        <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+            <div class="w-screen max-w-md bg-slate-900 border-l border-slate-800 text-slate-100 shadow-2xl flex flex-col justify-between">
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-bag-shopping text-brand-500 text-xl"></i>
+                        <h3 class="text-xl font-bold font-serif text-white">Your Order Cart</h3>
+                    </div>
+                    <button onclick="toggleCart(false)" class="p-2 text-slate-400 hover:text-white rounded-lg">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items Container -->
+                <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto space-y-4 divide-y divide-slate-800/60">
+                    <!-- Dynamic Cart Items Here -->
+                </div>
+
+                <!-- Cart Summary & Checkout -->
+                <div class="p-6 border-t border-slate-800 bg-slate-950/60 space-y-4">
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal" class="font-semibold text-white">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Delivery Fee</span>
+                            <span id="cartDelivery" class="font-semibold text-white">$2.50</span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-slate-800">
+                            <span>Total</span>
+                            <span id="cartTotal" class="text-brand-500">$0.00</span>
+                        </div>
+                    </div>
+
+                    <button id="checkoutBtn" onclick="processCheckout()" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-500 hover:to-amber-500 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-credit-card"></i> Proceed to Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        // Menu Data Dataset
+        const menuItems = [
+            { id: 1, name: "Royal Dum Biryani", category: "mains", price: 18.99, rating: 4.9, image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80", desc: "Aromatic long-grain basmati with lamb, saffron & fragrant spices cooked on slow charcoal." },
+            { id: 2, name: "Emperor's BBQ Platter", category: "bbq", price: 23.99, rating: 4.9, image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80", desc: "Assorted platter of Seekh Kebabs, Chicken Malai Boti, Lamb Chops & fresh Naan." },
+            { id: 3, name: "Butter Chicken Handi", category: "mains", price: 16.50, rating: 5.0, image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80", desc: "Tender boneless chicken tenderized in velvet butter tomato sauce." },
+            { id: 4, name: "Royal Shahi Kheer", category: "desserts", price: 8.99, rating: 4.8, image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80", desc: "Traditional saffron rice pudding garnished with crushed pistachios & silver leaf." },
+            { id: 5, name: "Crispy Garlic Samosa (4 pcs)", category: "appetizers", price: 7.50, rating: 4.7, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80", desc: "Golden fried pastries stuffed with spiced potatoes, peas, and mint chutney." },
+            { id: 6, name: "Smoky Chicken Tikka", category: "bbq", price: 14.99, rating: 4.8, image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80", desc: "Marinated chicken thighs roasted to smoky perfection in clay tandoor oven." },
+            { id: 7, name: "Mango Lassi Delights", category: "beverages", price: 5.50, rating: 4.9, image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80", desc: "Thick chilled yogurt drink blended with Alphonso mango pulp & cardamom." },
+            { id: 8, name: "Paneer Butter Masala", category: "mains", price: 14.00, rating: 4.6, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80", desc: "Fresh cottage cheese cubes cooked in rich cashew and onion tomato gravy." },
+            { id: 9, name: "Gulab Jamun with Ice Cream", category: "desserts", price: 7.99, rating: 4.9, image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80", desc: "Warm milk dough dumplings dipped in rose sugar syrup served with vanilla ice cream." },
+            { id: 10, name: "Fresh Mint Lemonade", category: "beverages", price: 4.50, rating: 4.7, image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80", desc: "Refreshing crushed ice drink with fresh mint leaves, lemon juice and pink salt." }
+        ];
+
+        // State Management
+        let cart = [];
+
+        // Application Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu('all');
+            setupEventListeners();
+        });
+
+        // Menu Filter Render Logic
+        function renderMenu(category) {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden card-hover flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-slate-900/90 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-slate-700/80 backdrop-blur-sm">
+                                <i class="fa-solid fa-star mr-1"></i>${item.rating}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold font-serif text-white leading-tight">${item.name}</h3>
+                                <span class="text-lg font-bold text-brand-500">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="addToCart(${item.id})" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 border border-slate-700/60 hover:border-brand-500">
+                            <i class="fa-solid fa-plus text-brand-400 hover:text-white"></i> Add to Order
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Active Tab Visual Toggle
+        function filterMenu(category) {
+            renderMenu(category);
+            const buttons = document.querySelectorAll('#menuTabs .tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800";
+            });
+            event.currentTarget.className = "tab-btn active px-6 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all bg-brand-600 text-white shadow-lg shadow-brand-600/30";
+        }
+
+        // Cart Actions
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return;
+
+            const existing = cart.find(c => c.id === itemId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added "${item.name}" to cart!`);
+        }
+
+        function updateQuantity(itemId, change) {
+            const index = cart.findIndex(c => c.id === itemId);
+            if (index > -1) {
+                cart[index].quantity += change;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const subtotalElem = document.getElementById('cartSubtotal');
+            const totalElem = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItemsCount > 0) {
+                cartBadge.innerText = totalItemsCount;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+
+            // Render Cart List
+            cartItemsList.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-slate-700"></i>
+                        <p class="text-sm">Your cart is currently empty.</p>
+                        <p class="text-xs mt-1 text-slate-600">Select delicious dishes from our menu!</p>
+                    </div>
+                `;
+                subtotalElem.innerText = "$0.00";
+                totalElem.innerText = "$0.00";
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemSubtotal = item.price * item.quantity;
+                subtotal += itemSubtotal;
+
+                const div = document.createElement('div');
+                div.className = "pt-3 flex items-center justify-between gap-4";
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <h4 class="text-sm font-semibold text-white leading-tight">${item.name}</h4>
+                            <span class="text-xs text-brand-400 font-bold">$${item.price.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center justify-center text-xs">-</button>
+                        <span class="text-sm font-bold w-4 text-center text-white">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 flex items-center justify-center text-xs">+</button>
+                    </div>
+                `;
+                cartItemsList.appendChild(div);
+            });
+
+            const deliveryFee = 2.50;
+            const grandTotal = subtotal + deliveryFee;
+
+            subtotalElem.innerText = `$${subtotal.toFixed(2)}`;
+            totalElem.innerText = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function toggleCart(show) {
+            const modal = document.getElementById('cartModal');
+            if (show) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) return;
+            cart = [];
+            updateCartUI();
+            toggleCart(false);
+            showToast("Order Placed Successfully! Your food will arrive soon. 🚚", "success");
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Cart Toggle Button
+            document.getElementById('cartBtn').addEventListener('click', () => toggleCart(true));
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close Mobile Menu on Link Click
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Reservation Form Handler
+            document.getElementById('reservationForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('resName').value;
+                const guests = document.getElementById('resGuests').value;
+                const date = document.getElementById('resDate').value;
+                const time = document.getElementById('resTime').value;
+
+                showToast(`Table reserved for ${name} (${guests} Guests) on ${date} at ${time}!`, "success");
+                e.target.reset();
+            });
+
+            // Contact Form Handler
+            document.getElementById('contactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast("Thank you! Your message has been sent to Chef Ahmed.", "success");
+                e.target.reset();
+            });
+
+            // Newsletter Form Handler
+            document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast("Subscribed successfully! Check your inbox for discounts.", "success");
+                e.target.reset();
+            });
+        }
+
+        // Custom Notification Toast Function
+        function showToast(message, type = "info") {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-xl shadow-2xl text-white font-medium text-sm border transition-all duration-300 transform translate-y-2 opacity-0 ${
+                type === "success" 
+                    ? "bg-slate-900 border-emerald-500/50 text-emerald-400" 
+                    : "bg-slate-900 border-brand-500/50 text-brand-400"
+            }`;
+
+            toast.innerHTML = `
+                <i class="${type === 'success' ? 'fa-solid fa-circle-check text-emerald-500' : 'fa-solid fa-bell text-brand-500'}"></i>
+                <span class="text-slate-100">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
